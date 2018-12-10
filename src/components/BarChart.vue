@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="BarChart"></div>
+        <slot></slot>
+            <div class="BarChart"></div>
     </div>
 </template>
 
@@ -10,23 +11,15 @@ import bb from 'billboard.js'
 export default{
 	name: "BarChart",
 	components:{},
-	props:['rest-s'],
-	data: function(){
-		return{
-			columns: [
-              ["data1", 30, 200, 100, 170, 150, 250],
-              ["data2", 130, 100, 140, 35, 110, 50]
-          ],
-	}
-
-    },
+	props:['columns'],
     mounted: function(){
+        let rS = this.columns
         bb.generate(
             {
                 bindto: ".BarChart",
                 data: {
                     type: "bar",
-                    columns: this.data()
+                    columns: rS
           
       }
             }
